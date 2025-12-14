@@ -62,7 +62,7 @@ int main() {
     int remainder = TOTAL_ITEMS % N_CONSUMERS;
     for (int i = 0; i < N_CONSUMERS; i++) {
         cargs[i].id = i;
-        cargs[i].count = per_consumer + (i == N_CONSUMERS - 1 ? remainder : 0);
+        cargs[i].count = per_consumer + (i < remainder ? 1 : 0);
         pthread_create(&consumer[i], NULL, consumer_thread, &cargs[i]);
     }
     //completion time
